@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Web Form </title>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="tab tab-1">
+                <table id="table" border="3">
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> Viransh </td>
+                        <td> Developer @Renterii </td>
+                    </tr>
+                    <tr>
+                        <td> Dennis </td>
+                        <td> CTO @Renterii</td>
+                    </tr>
+                </table>
+            </div>
+            <div class ="tab">
+            Name :<input type="text" name="name" id="name">
+            Description : <input type="textarea" name="Description"  id="Description">
+            <button onclick="add();">Add</button>
+            <button onclick="Deletion();">Delete</button>
+            <button onclick="edit();">edit</button>
+        </div>
+        </div>
+
+        <script>
+            var rIndex,
+                table = document.getElementById("table");
+            function add()
+            {
+                var newRow = table.insertRow(table.length),
+                cell1 = newRow.insertCell(0),
+                cell2 = newRow.insertCell(1),
+                name = document.getElementById("name").value,
+                Description = document.getElementById("Description").value;
+            cell1.innerHTML = name ;
+            cell2.innerHTML = Description;
+            }
+            selection();
+            function selection()
+            {
+                var table = document.getElementById("table");
+
+                
+                for(var i = 0; i< table.rows.length; i++)
+                {
+                    table.rows[i].onclick =function()
+                    {
+                        rIndex = this.rowIndex;
+                        document.getElementById("name").value = this.cells[0].innerHTML;
+                        document.getElementById("Description").value = this.cells[1].innerHTML;  
+                    };
+                
+                }
+               
+            }
+            selection();
+
+            
+            function edit()
+            {
+                var  name = document.getElementById("name").value,
+                     Description = document.getElementById("Description").value;
+                
+                table.rows[rIndex].cells[0].innerHTML = name;
+                table.rows[rIndex].cells[1].innerHTML = Description;
+            }
+            function Deletion()
+            {
+                table.deleteRow(rIndex);
+            }
+            </script>
+    </body>
+</html>
